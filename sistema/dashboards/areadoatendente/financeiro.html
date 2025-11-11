@@ -1,0 +1,1133 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Dashboard-Agenda</title>
+<!-- plugins:css -->
+<link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="../../assets/vendors/ti-icons/css/themify-icons.css">
+<link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="../../assets/vendors/font-awesome/css/font-awesome.min.css">
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<link rel="stylesheet" href="../../ssets/vendors/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<!-- endinject -->
+<!-- Layout styles -->
+<link rel="stylesheet" href="../../assets/css/style.css">
+<!-- End layout styles -->
+<link rel="shortcut icon" href="../../assets/images/logo/icons/atendente.png" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css">
+
+<style>
+    /* Estilo para a imagem dentro da div .logo */
+    .logo img {
+        /* Define o tamanho fixo de um ícone */
+        width: 40px;
+        /* Altere este valor para o tamanho desejado (ex: 32px, 64px) */
+        height: 40px;
+
+        /* Opcional: Garante que a imagem seja um círculo, se for o estilo que você quer */
+        /* border-radius: 50%; */
+    }
+
+    /* Se você também quer o contêiner (.logo) pequeno */
+    .logo {
+        /* Garante que o contêiner não seja maior que o ícone */
+        width: 40px;
+        height: 40px;
+
+        /* Se a centralização for necessária: */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 60px;
+    }
+
+    #fullcalendar-atendente {
+        min-height: 600px !important;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="row p-0 m-0 proBanner" id="proBanner">
+            <div class="col-md-12 p-0 m-0">
+                <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+                    <div class="ps-lg-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="mb-0 font-weight-medium me-3 buy-now-text"></p>
+                            <a href="#" target="_blank" class="btn me-2 buy-now-btn border-0">Visite nosso site</a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="../../../sistema/index.html"><i class="mdi mdi-home me-3 text-white"></i></a>
+                        <button id="bannerClose" class="btn border-0 p-0">
+                            <i class="mdi mdi-close text-white mr-0"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+
+                <div class="logo">
+                    <img src="../../assets/images/logo/dente_logo.png">
+
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="search-field d-none d-md-block">
+                    <form class="d-flex align-items-center h-100" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-transparent">
+                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                            </div>
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Search ">
+                        </div>
+                    </form>
+                </div>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="../../assets/images/logo/icons/atendente.png" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">Atendente</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="../../../sistema/login.html">
+                                <i class="mdi mdi-cached me-2 text-success"></i> Switch Account </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../../../sistema/index.html">
+                                <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                        </div>
+                    </li>
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link">
+                            <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-email-outline"></i>
+                            <span class="count-symbol bg-warning"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
+                            aria-labelledby="messageDropdown">
+                            <h6 class="p-3 mb-0">Messages</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message
+                                    </h6>
+                                    <p class="text-gray mb-0"> 1 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a
+                                        message</h6>
+                                    <p class="text-gray mb-0"> 15 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face3.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated
+                                    </h6>
+                                    <p class="text-gray mb-0"> 18 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="p-3 mb-0 text-center">4 new messages</h6>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                            data-bs-toggle="dropdown">
+                            <i class="mdi mdi-bell-outline"></i>
+                            <span class="count-symbol bg-danger"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
+                            aria-labelledby="notificationDropdown">
+                            <h6 class="p-3 mb-0">Notifications</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="mdi mdi-calendar"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
+                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-warning">
+                                        <i class="mdi mdi-cog"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
+                                    <p class="text-gray ellipsis mb-0"> Update dashboard </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-info">
+                                        <i class="mdi mdi-link-variant"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
+                                    <p class="text-gray ellipsis mb-0"> New admin wow! </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-power"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-format-line-spacing"></i>
+                        </a>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-profile">
+                        <a href="#" class="nav-link">
+                            <div class="nav-profile-image">
+                                <img src="../../assets/images/logo/icons/atendente.png" alt="profile" />
+                                <span class="login-status online"></span>
+                                <!--change to offline or busy as needed-->
+                            </div>
+                            <div class="nav-profile-text d-flex flex-column">
+                                <span class="font-weight-bold mb-2">Aréa do</span>
+                                <span class="text-secondary text-small">Atendente</span>
+                            </div>
+                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../areadoatendente.html">
+                            <span class="menu-title">Dashboard</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agenda.html">
+                            <span class="menu-title">Agenda</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-title">Profile</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account-circle menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="profile.html">Meu perfil</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-title">Controle</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="controlepacientes.html">Cadastro de Pacientes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="controlepacientes.html">Visualizar Cadastros</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="controlepacientes.html">Atualizar Cadastro</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="controlepacientes.html">Deletar Cadastro</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="controlepacientes.html">Convênio</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="financeiro.html">
+                            <span class="menu-title">Financeiro</span>
+                            <i class="mdi mdi-finance menu-icon"></i>
+                        </a>
+                    </li>
+
+
+
+                </ul>
+            </nav>
+           <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                            <span class="page-title-icon bg-gradient-danger text-white me-2">
+                                <i class="mdi mdi-cash-multiple"></i>
+                            </span> Central Financeira e Administrativa
+                        </h3>
+                    </div>
+
+                    <div class="row">
+                        <h4 class="card-title mb-3">Atalhos e Visão Geral (Hoje)</h4>
+
+                        <div class="col-md-3 stretch-card grid-margin">
+                            <div class="card bg-gradient-success card-img-holder text-white">
+                                <div class="card-body">
+                                    <i class="mdi mdi-currency-usd mdi-24px float-right"></i>
+                                    <h4 class="font-weight-normal mb-3">Caixa de Hoje (Recebimentos) <i
+                                            class="mdi mdi-menu-up mdi-24px float-right"></i>
+                                    </h4>
+                                    <h2 class="mb-5">R$ 1.500,00</h2>
+                                    <h6 class="card-text">5 Transações registradas</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 stretch-card grid-margin">
+                            <div class="card bg-gradient-info card-img-holder text-white">
+                                <div class="card-body">
+                                    <i class="mdi mdi-arrow-down-bold-box mdi-24px float-right"></i>
+                                    <h4 class="font-weight-normal mb-3">Contas a Receber (Venc. Hoje)
+                                    </h4>
+                                    <h2 class="mb-5">R$ 350,00</h2>
+                                    <h6 class="card-text">2 Pagamentos pendentes</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 stretch-card grid-margin">
+                            <div class="card bg-gradient-warning card-img-holder text-white">
+                                <div class="card-body">
+                                    <i class="mdi mdi-file-document-box-check-outline mdi-24px float-right"></i>
+                                    <h4 class="font-weight-normal mb-3">Faturamento Convênios (Mês)
+                                    </h4>
+                                    <h2 class="mb-5">R$ 8.200,00</h2>
+                                    <h6 class="card-text">3 Guias pendentes de envio</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 stretch-card grid-margin">
+                            <div class="card bg-gradient-danger card-img-holder text-white">
+                                <div class="card-body">
+                                    <i class="mdi mdi-arrow-up-bold-box mdi-24px float-right"></i>
+                                    <h4 class="font-weight-normal mb-3">Contas a Pagar (Venc. Hoje)
+                                    </h4>
+                                    <h2 class="mb-5">R$ 800,00</h2>
+                                    <h6 class="card-text">1 Boleto vencendo hoje</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab-financeiro" role="tablist">
+                                            <button class="nav-link active" id="nav-caixa-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-caixa" type="button" role="tab"
+                                                aria-controls="nav-caixa" aria-selected="true"><i
+                                                    class="mdi mdi-receipt me-1"></i> Caixa Detalhado</button>
+                                            <button class="nav-link" id="nav-contas-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-contas" type="button" role="tab"
+                                                aria-controls="nav-contas" aria-selected="false"><i
+                                                    class="mdi mdi-credit-card-multiple-outline me-1"></i> Contas
+                                                (Pagar/Receber)</button>
+                                            <button class="nav-link" id="nav-convenios-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-convenios" type="button" role="tab"
+                                                aria-controls="nav-convenios" aria-selected="false"><i
+                                                    class="mdi mdi-file-chart me-1"></i> Faturamento Convênios</button>
+                                        </div>
+                                    </nav>
+
+                                    <div class="tab-content pt-3" id="nav-tabContent-financeiro">
+
+                                        <div class="tab-pane fade show active" id="nav-caixa" role="tabpanel"
+                                            aria-labelledby="nav-caixa-tab">
+                                            <h5 class="mb-3">Registro de Recebimentos e Pagamentos (Hoje)</h5>
+                                            <div class="alert alert-info small"><i
+                                                    class="mdi mdi-information-outline me-1"></i> Use esta área para
+                                                registrar pagamentos de pacientes e pequenas despesas administrativas.
+                                            </div>
+
+                                            <div class="input-group mb-3">
+                                                <select class="form-control" style="max-width: 150px;">
+                                                    <option>Filtrar por Hoje</option>
+                                                    <option>Filtrar por Mês</option>
+                                                </select>
+                                                <button class="btn btn-gradient-success btn-icon-text ms-2"
+                                                    data-bs-toggle="modal" data-bs-target="#modalNovoRecebimento">
+                                                    <i class="mdi mdi-plus me-1"></i> Novo Recebimento
+                                                </button>
+                                                <button class="btn btn-outline-danger btn-icon-text ms-2"
+                                                    data-bs-toggle="modal" data-bs-target="#modalNovaDespesa">
+                                                    <i class="mdi mdi-minus me-1"></i> Nova Despesa
+                                                </button>
+                                            </div>
+
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Hora</th>
+                                                            <th>Tipo</th>
+                                                            <th>Descrição / Paciente</th>
+                                                            <th>Forma Pagto.</th>
+                                                            <th>Valor</th>
+                                                            <th>Ações</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr class="table-success" data-transacao-id="REC001"
+                                                            data-tipo="RECEBIMENTO">
+                                                            <td>10:30</td>
+                                                            <td><span class="badge bg-success">RECEBIMENTO</span></td>
+                                                            <td data-campo="descricao">Ana C. P. - Parcial Tratamento
+                                                            </td>
+                                                            <td data-campo="formaPagamento">Cartão Crédito</td>
+                                                            <td data-campo="valor">800.00</td>
+                                                            <td>
+
+
+                                                                <button
+                                                                    class="btn btn-sm btn-success btn-status-pagamento"
+                                                                    title="Transação de Pagamento Recebido"
+                                                                    data-acao="editar-status"
+                                                                    data-transacao-id="[ID_DA_TRANSACAO]"> <i
+                                                                        class="mdi mdi-cash-multiple"></i>
+                                                                    Pago
+                                                                </button>
+
+                                                                <button
+                                                                    class="btn btn-xs btn-outline-secondary btn-edit-transacao"
+                                                                    title="Editar Lançamento"
+                                                                    data-transacao-id="[ID_DA_TRANSACAO]">
+                                                                    <i class="mdi mdi-pencil"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="table-danger" data-transacao-id="DESP001"
+                                                            data-tipo="DESPESA">
+                                                            <td>11:45</td>
+                                                            <td><span class="badge bg-danger">DESPESA</span></td>
+                                                            <td data-campo="descricao">Compra de Material de Escritório
+                                                            </td>
+                                                            <td data-campo="categoria">Material Odontológico/Escritório
+                                                            </td>
+                                                            <td data-campo="valor">150.00</td>
+                                                            <td>
+
+                                                                <button
+                                                                    class="btn btn-sm btn-success btn-status-pagamento"
+                                                                    title="Transação de Pagamento Recebido"
+                                                                    data-acao="editar-status"
+                                                                    data-transacao-id="[ID_DA_TRANSACAO]"> <i
+                                                                        class="mdi mdi-cash-multiple"></i>
+                                                                    Pago
+                                                                </button>
+
+                                                                <button
+                                                                    class="btn btn-xs btn-outline-secondary btn-edit-transacao"
+                                                                    title="Editar Lançamento"
+                                                                    data-transacao-id="[ID_DA_TRANSACAO]">
+                                                                    <i class="mdi mdi-pencil"></i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-contas" role="tabpanel"
+                                            aria-labelledby="nav-contas-tab">
+                                            <h5 class="mb-3">Gestão de Contas a Pagar e a Receber</h5>
+                                            <div class="alert alert-warning small">
+                                                <i class="mdi mdi-calendar-alert me-1"></i> Aqui são gerenciadas contas
+                                                com vencimento futuro (Contas Fixas, Parcelamentos, Boletos).
+                                            </div>
+
+                                            <nav>
+                                                <div class="nav nav-pills" id="nav-pills-contas" role="tablist">
+                                                    <button class="nav-link active" id="pills-receber-tab"
+                                                        data-bs-toggle="pill" data-bs-target="#pills-receber"
+                                                        type="button" role="tab">A Receber</button>
+                                                    <button class="nav-link" id="pills-pagar-tab" data-bs-toggle="pill"
+                                                        data-bs-target="#pills-pagar" type="button" role="tab">A
+                                                        Pagar</button>
+                                                </div>
+                                            </nav>
+
+                                            <div class="tab-content pt-3">
+                                                <div class="tab-pane fade show active" id="pills-receber"
+                                                    role="tabpanel">
+                                                    <h6>Contas a Receber (Próximos 7 dias)</h6>
+                                                    <p class="small text-success">Total a Receber: R$ 5.200,00</p>
+                                                    <table class="table table-sm">
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="pills-pagar" role="tabpanel">
+                                                    <h6>Contas a Pagar (Próximos 7 dias)</h6>
+                                                    <p class="small text-danger">Total a Pagar: R$ 1.800,00</p>
+                                                    <table class="table table-sm">
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-convenios" role="tabpanel"
+                                            aria-labelledby="nav-convenios-tab">
+                                            <h5 class="mb-3">Gestão de Faturamento e Guias de Convênios</h5>
+                                            <div class="alert alert-secondary small">
+                                                <i class="mdi mdi-bank me-1"></i> Acompanhamento das guias enviadas e
+                                                pendentes de pagamento pelos planos.
+                                            </div>
+
+                                            <h6>Guias Pendentes de Pagamento</h6>
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Convênio</th>
+                                                        <th>Guia Nº</th>
+                                                        <th>Valor</th>
+                                                        <th>Status</th>
+                                                        <th>Ações</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Amil Dental</td>
+                                                        <td>202511-001</td>
+                                                        <td>R$ 900,00</td>
+                                                        <td><span class="badge bg-warning">ENVIADA</span></td>
+                                                        <td><button
+                                                                class="btn btn-xs btn-outline-info">Detalhes</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal fade" id="modalNovoRecebimento" tabindex="-1"
+                                        aria-labelledby="modalNovoRecebimentoLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form id="formNovoRecebimento">
+                                                    <div class="modal-header bg-gradient-success text-white">
+                                                        <h5 class="modal-title" id="modalNovoRecebimentoLabel"><i
+                                                                class="mdi mdi-plus-circle me-2"></i> Registrar
+                                                            Recebimento</h5>
+                                                        <button type="button" class="btn-close btn-close-white"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="recValor" class="form-label">Valor Recebido
+                                                                (R$)</label>
+                                                            <input type="number" step="0.01" class="form-control"
+                                                                id="recValor" required placeholder="0.00">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recDescricao" class="form-label">Descrição /
+                                                                Paciente</label>
+                                                            <input type="text" class="form-control" id="recDescricao"
+                                                                required placeholder="Ex: Pagamento Ana C. - Consulta">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="recFormaPagamento" class="form-label">Forma de
+                                                                Pagamento</label>
+                                                            <select class="form-select" id="recFormaPagamento" required>
+                                                                <option value="">Selecione...</option>
+                                                                <option value="Dinheiro">Dinheiro</option>
+                                                                <option value="CartaoCredito">Cartão de Crédito</option>
+                                                                <option value="CartaoDebito">Cartão de Débito</option>
+                                                                <option value="Pix">PIX</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit"
+                                                            class="btn btn-gradient-success">Registrar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="modalNovaDespesa" tabindex="-1"
+                                        aria-labelledby="modalNovaDespesaLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <form id="formNovaDespesa">
+                                                    <div class="modal-header bg-gradient-danger text-white">
+                                                        <h5 class="modal-title" id="modalNovaDespesaLabel"><i
+                                                                class="mdi mdi-minus-circle me-2"></i>
+                                                            Registrar Despesa</h5>
+                                                        <button type="button" class="btn-close btn-close-white"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="despValor" class="form-label">Valor Pago
+                                                                (R$)</label>
+                                                            <input type="number" step="0.01" class="form-control"
+                                                                id="despValor" required placeholder="0.00">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="despDescricao" class="form-label">Descrição /
+                                                                Fornecedor</label>
+                                                            <input type="text" class="form-control" id="despDescricao"
+                                                                required
+                                                                placeholder="Ex: Pagamento aluguel / Material de limpeza">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="despCategoria"
+                                                                class="form-label">Categoria</label>
+                                                            <select class="form-select" id="despCategoria" required>
+                                                                <option value="">Selecione...</option>
+                                                                <option value="Material">Material
+                                                                    Odontológico/Escritório</option>
+                                                                <option value="Pessoal">Despesas com Pessoal</option>
+                                                                <option value="Fixas">Aluguel/Contas Fixas</option>
+                                                                <option value="Outras">Outras Despesas</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-outline-secondary"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit"
+                                                            class="btn btn-gradient-danger">Registrar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="modalEdicaoTransacao" tabindex="-1"
+                                        aria-labelledby="modalEdicaoTransacaoLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header"
+                                                    style="background-color: #2B9ADA; color: white;">
+                                                    <h5 class="modal-title" id="modalEdicaoTransacaoLabel">
+                                                        <i class="mdi mdi-cash-multiple me-2"></i> Editar Pagamento /
+                                                        Despesa
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Fechar"></button>
+                                                </div>
+
+                                                <form id="form-editar-transacao">
+                                                    <div class="modal-body">
+
+                                                        <input type="hidden" id="transacao-id-oculto"
+                                                            name="transacao_id">
+
+                                                        <div class="mb-3">
+                                                            <label for="edit-status" class="form-label">Status da
+                                                                Transação</label>
+                                                            <select class="form-select" id="edit-status" name="status"
+                                                                required>
+                                                                <option value="pago">✅ Pago/Recebido</option>
+                                                                <option value="pendente">⏳ Pendente</option>
+                                                                <option value="atrasado">🚨 Atrasado</option>
+                                                                <option value="despesa">📤 Despesa/Custo</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="edit-valor" class="form-label">Valor
+                                                                (R$)</label>
+                                                            <input type="number" step="0.01" class="form-control"
+                                                                id="edit-valor" name="valor" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="edit-data" class="form-label">Data de
+                                                                Pagamento/Vencimento</label>
+                                                            <input type="date" class="form-control" id="edit-data"
+                                                                name="data" required>
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="edit-descricao"
+                                                                class="form-label">Descrição</label>
+                                                            <textarea class="form-control" id="edit-descricao"
+                                                                name="descricao" rows="3"></textarea>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            style="background-color: #2B9ADA; border-color: #2B9ADA;">Salvar
+                                                            Alterações</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title"><i class="mdi mdi-chart-line me-2"></i> Relatórios
+                                        Administrativos</h4>
+                                    <p class="card-description">Acesso rápido aos relatórios gerenciais e de
+                                        performance.</p>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <a href="#" class="list-group-item list-group-item-action"><i
+                                                    class="mdi mdi-file-excel-box me-2"></i> **Relatório de Desempenho
+                                                (Período)**</a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#" class="list-group-item list-group-item-action"><i
+                                                    class="mdi mdi-account-cash me-2"></i> **Relatório de Contas
+                                                Abertas**</a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="#" class="list-group-item list-group-item-action"><i
+                                                    class="mdi mdi-calendar-remove me-2"></i> **Relatório de Taxa de
+                                                Faltas**</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+            <!-- main-panel ends -->
+        </div>
+
+
+        <!-- page-body-wrapper ends -->
+
+    </div>
+
+
+ <!--novos pagamentos e despesas-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // ... (Seu código anterior para Pacientes) ...
+
+                // Novas variáveis para o Financeiro
+                const formNovoRecebimento = document.getElementById('formNovoRecebimento');
+                const formNovaDespesa = document.getElementById('formNovaDespesa');
+                const tabelaCaixaBody = document.querySelector('#nav-caixa .table-responsive tbody');
+
+                // ==========================================================
+                // FUNÇÃO AUXILIAR: CRIA A LINHA DA TRANSAÇÃO NO CAIXA
+                // ==========================================================
+                function criarLinhaTransacao(transacao) {
+                    const now = new Date();
+                    const hora = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+
+                    const isRecebimento = transacao.tipo === 'RECEBIMENTO';
+                    const rowClass = isRecebimento ? 'table-success' : 'table-danger';
+                    const badgeClass = isRecebimento ? 'bg-success' : 'bg-danger';
+
+                    const newRow = document.createElement('tr');
+                    newRow.classList.add(rowClass);
+
+                    newRow.innerHTML = `
+                <td>${hora}</td>
+                <td><span class="badge ${badgeClass}">${transacao.tipo}</span></td>
+                <td>${transacao.descricao}</td>
+                <td>${transacao.formaPagamento || transacao.categoria}</td>
+                <td>R$ ${transacao.valor.toFixed(2).replace('.', ',')}</td>
+                <td><button class="btn btn-xs btn-outline-secondary"><i class="mdi mdi-pencil"></i></button></td>
+            `;
+
+                    return newRow;
+                }
+
+
+                // ==========================================================
+                // 1. GESTÃO DO NOVO RECEBIMENTO
+                // ==========================================================
+                formNovoRecebimento.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const transacaoData = {
+                        tipo: 'RECEBIMENTO',
+                        valor: parseFloat(document.getElementById('recValor').value),
+                        descricao: document.getElementById('recDescricao').value,
+                        formaPagamento: document.getElementById('recFormaPagamento').value
+                    };
+
+                    // SIMULAÇÃO: Envio ao Backend (POST)
+                    console.log("Registrando Recebimento:", transacaoData);
+
+                    // CRIAÇÃO da nova linha no DOM e inserção no topo da tabela
+                    const novaLinha = criarLinhaTransacao(transacaoData);
+                    tabelaCaixaBody.prepend(novaLinha);
+
+                    // Fecha e reseta o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalNovoRecebimento'));
+                    modal.hide();
+                    formNovoRecebimento.reset();
+
+                    alert(`✅ Recebimento de R$ ${transacaoData.valor.toFixed(2).replace('.', ',')} registrado!`);
+                });
+
+
+                // ==========================================================
+                // 2. GESTÃO DA NOVA DESPESA (PAGAMENTO)
+                // ==========================================================
+                formNovaDespesa.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const transacaoData = {
+                        tipo: 'DESPESA',
+                        valor: parseFloat(document.getElementById('despValor').value),
+                        descricao: document.getElementById('despDescricao').value,
+                        categoria: document.getElementById('despCategoria').value
+                    };
+
+                    // SIMULAÇÃO: Envio ao Backend (POST)
+                    console.log("Registrando Despesa:", transacaoData);
+
+                    // CRIAÇÃO da nova linha no DOM e inserção no topo da tabela
+                    const novaLinha = criarLinhaTransacao(transacaoData);
+                    tabelaCaixaBody.prepend(novaLinha);
+
+                    // Fecha e reseta o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalNovaDespesa'));
+                    modal.hide();
+                    formNovaDespesa.reset();
+
+                    alert(`➖ Despesa de R$ ${transacaoData.valor.toFixed(2).replace('.', ',')} registrada!`);
+                });
+
+
+            });
+        </script>
+       
+ <script>
+
+            // 1. GESTÃO DO NOVO RECEBIMENTO
+            // ==========================================================
+            formNovoRecebimento.addEventListener('submit', async function (e) { // ⬅️ Adicionado 'async'
+                e.preventDefault();
+
+                const transacaoData = {
+                    tipo: 'RECEBIMENTO',
+                    valor: parseFloat(document.getElementById('recValor').value),
+                    descricao: document.getElementById('recDescricao').value,
+                    formaPagamento: document.getElementById('recFormaPagamento').value
+                };
+
+                // ----------------------------------------------------
+                // 🎯 NOVO CÓDIGO: ENVIO REAL DOS DADOS VIA FETCH 🎯
+                // ----------------------------------------------------
+                try {
+                    const response = await fetch('/api/transacoes/novoRecebimento', { // ⬅️ Troque pela sua URL real de API
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // Se precisar de autenticação, adicione aqui (ex: 'Authorization': 'Bearer token')
+                        },
+                        body: JSON.stringify(transacaoData) // Converte o objeto JS para string JSON
+                    });
+
+                    if (!response.ok) {
+                        // Lança um erro se o status HTTP não for 2xx (ex: 400, 500)
+                        throw new Error('Falha ao registrar recebimento. Status: ' + response.status);
+                    }
+
+                    // Opcional: Se o backend retornar o objeto salvo com o ID final
+                    // const resultado = await response.json(); 
+                    // console.log("Recebimento registrado com sucesso. ID:", resultado.id); 
+
+                    // CRIAÇÃO da nova linha no DOM e inserção no topo da tabela (APENAS SE O ENVIO FOI SUCESSO)
+                    const novaLinha = criarLinhaTransacao(transacaoData);
+                    tabelaCaixaBody.prepend(novaLinha);
+
+                    // Fecha e reseta o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalNovoRecebimento'));
+                    modal.hide();
+                    formNovoRecebimento.reset();
+
+                    alert(`✅ Recebimento de R$ ${transacaoData.valor.toFixed(2).replace('.', ',')} registrado!`);
+
+                } catch (error) {
+                    console.error("Erro ao salvar recebimento:", error);
+                    alert(`❌ Erro ao salvar o recebimento. Verifique sua conexão e tente novamente. Detalhes: ${error.message}`);
+                }
+                // ----------------------------------------------------
+            });
+            // ==========================================================
+            // 2. GESTÃO DA NOVA DESPESA (PAGAMENTO)
+            // ==========================================================
+            formNovaDespesa.addEventListener('submit', async function (e) { // ⬅️ Adicionado 'async'
+                e.preventDefault();
+
+                const transacaoData = {
+                    tipo: 'DESPESA',
+                    valor: parseFloat(document.getElementById('despValor').value),
+                    descricao: document.getElementById('despDescricao').value,
+                    categoria: document.getElementById('despCategoria').value
+                };
+
+                // ----------------------------------------------------
+                // 🎯 NOVO CÓDIGO: ENVIO REAL DOS DADOS VIA FETCH 🎯
+                // ----------------------------------------------------
+                try {
+                    const response = await fetch('/api/transacoes/novaDespesa', { // ⬅️ Troque pela sua URL real de API
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(transacaoData)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Falha ao registrar despesa. Status: ' + response.status);
+                    }
+
+                    // CRIAÇÃO da nova linha no DOM e inserção no topo da tabela (APENAS SE O ENVIO FOI SUCESSO)
+                    const novaLinha = criarLinhaTransacao(transacaoData);
+                    tabelaCaixaBody.prepend(novaLinha);
+
+                    // Fecha e reseta o modal
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('modalNovaDespesa'));
+                    modal.hide();
+                    formNovaDespesa.reset();
+
+                    alert(`➖ Despesa de R$ ${transacaoData.valor.toFixed(2).replace('.', ',')} registrada!`);
+
+                } catch (error) {
+                    console.error("Erro ao salvar despesa:", error);
+                    alert(`❌ Erro ao salvar a despesa. Verifique sua conexão e tente novamente. Detalhes: ${error.message}`);
+                }
+                // ----------------------------------------------------
+            });
+        </script>
+
+    
+<!--atualizacao do status-->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+
+                // Variável global para guardar a referência do botão que abriu o modal
+                let currentEditButton = null; // ⬅️ Nova Variável
+
+                const editButtons = document.querySelectorAll('.btn-edit-transacao, .btn-status-pagamento');
+                const modal = document.getElementById('modalEdicaoTransacao');
+                const form = document.getElementById('form-editar-transacao');
+
+                // ... (Função buscarDadosDaTransacao permanece a mesma) ...
+                function buscarDadosDaTransacao(id) {
+                    // ... (Seus dados simulados) ...
+                    if (id === '123') {
+                        return { status: 'pago', valor: 350.00, data: '2025-11-05', descricao: 'Restauração - Paciente Maria' };
+                    } else if (id === '456') {
+                        return { status: 'pendente', valor: 1200.00, data: '2025-11-20', descricao: 'Tratamento Ortodôntico - Novo Paciente' };
+                    } else {
+                        return { status: 'despesa', valor: 150.00, data: '2025-11-10', descricao: 'Compra de luvas e suprimentos' };
+                    }
+                }
+
+                // A. Lógica para Abrir o Modal
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function (event) {
+                        event.preventDefault();
+
+                        // Armazena a referência do botão clicado
+                        currentEditButton = this; // ⬅️ Armazenando a referência
+
+                        const transacaoId = this.dataset.transacaoId;
+
+                        if (!transacaoId) { /* ... (tratamento de erro) ... */ return; }
+
+                        // ... (restante do código para preencher o modal) ...
+
+                        const dadosSimulados = buscarDadosDaTransacao(transacaoId);
+
+                        document.getElementById('transacao-id-oculto').value = transacaoId;
+                        document.getElementById('edit-status').value = dadosSimulados.status;
+                        document.getElementById('edit-valor').value = dadosSimulados.valor;
+                        document.getElementById('edit-data').value = dadosSimulados.data;
+                        document.getElementById('edit-descricao').value = dadosSimulados.descricao;
+
+                        const bootstrapModal = new bootstrap.Modal(modal);
+                        bootstrapModal.show();
+                    });
+                });
+
+                // --------------------------------------------------------------------------------------------------
+
+                // B. Lógica para SALVAR o formulário do Modal e Atualizar o Botão na Listagem
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    const idSalvar = document.getElementById('transacao-id-oculto').value;
+                    const novoStatus = document.getElementById('edit-status').value;
+
+                    // 1. Dicionário para mapear status para cor e ícone (MDI)
+                    const statusMap = {
+                        'pago': { class: 'btn-success', icon: 'mdi-cash-multiple', text: 'Pago' },
+                        'pendente': { class: 'btn-warning', icon: 'mdi-alert-circle-outline', text: 'Pendente' },
+                        'atrasado': { class: 'btn-danger', icon: 'mdi-timer-off-outline', text: 'Atrasado' },
+                        'despesa': { class: 'btn-danger', icon: 'mdi-credit-card-minus', text: 'Despesa' } // Despesa pode ser danger ou secondary
+                    };
+
+                    // 2. Garante que o botão existe e pega a configuração do novo status
+                    if (currentEditButton && statusMap[novoStatus]) {
+
+                        const newStatusConfig = statusMap[novoStatus];
+
+                        // a) Remove todas as classes de cor de contexto do Bootstrap
+                        currentEditButton.classList.remove('btn-success', 'btn-warning', 'btn-danger', 'btn-info', 'btn-primary');
+
+                        // b) Adiciona a nova classe de cor
+                        currentEditButton.classList.add(newStatusConfig.class);
+
+                        // c) Altera o Ícone e o Texto (Simulação)
+                        currentEditButton.innerHTML = `
+                <i class="mdi ${newStatusConfig.icon}"></i> 
+                ${newStatusConfig.text}
+            `;
+                        currentEditButton.title = `Status: ${newStatusConfig.text}`;
+
+                        alert(`SUCESSO SIMULADO! Transação ${idSalvar} atualizada para Status: ${newStatusConfig.text}`);
+                    } else {
+                        alert('Erro ao salvar ou referência do botão perdida.');
+                    }
+
+                    // 3. Fecha o Modal
+                    const bootstrapModal = bootstrap.Modal.getInstance(modal);
+                    if (bootstrapModal) {
+                        bootstrapModal.hide();
+                    }
+
+                    // **OPCIONAL:** Remova o 'window.location.reload();' se você quiser evitar o recarregamento.
+                });
+            });
+        </script>
+
+
+    <!-- plugins:js -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="../../assets/vendors/chart.js/chart.umd.js"></script>
+    <script src="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+    <script src="../../assets/js/settings.js"></script>
+    <script src="../../assets/js/todolist.js"></script>
+    <script src="../../assets/js/jquery.cookie.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../../assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource@6.1.8/index.global.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timegrid@6.1.8/index.global.min.js"></script>
+</body>
+
+</html>

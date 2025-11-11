@@ -1,0 +1,1055 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Dashboard-Prontuario</title>
+<!-- plugins:css -->
+<link rel="stylesheet" href="../../assets/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="../../assets/vendors/ti-icons/css/themify-icons.css">
+<link rel="stylesheet" href="../../assets/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="../../assets/vendors/font-awesome/css/font-awesome.min.css">
+<!-- endinject -->
+<!-- Plugin css for this page -->
+<link rel="stylesheet" href="../../ssets/vendors/font-awesome/css/font-awesome.min.css" />
+<link rel="stylesheet" href="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<!-- endinject -->
+<!-- Layout styles -->
+<link rel="stylesheet" href="../../assets/css/style.css">
+<!-- End layout styles -->
+<link rel="shortcut icon" href="../../assets/images/logo/icons/dentista.png" />
+
+<style>
+    /* Estilo para a imagem dentro da div .logo */
+    .logo img {
+        /* Define o tamanho fixo de um ícone */
+        width: 40px;
+        /* Altere este valor para o tamanho desejado (ex: 32px, 64px) */
+        height: 40px;
+
+        /* Opcional: Garante que a imagem seja um círculo, se for o estilo que você quer */
+        /* border-radius: 50%; */
+    }
+
+    /* Se você também quer o contêiner (.logo) pequeno */
+    .logo {
+        /* Garante que o contêiner não seja maior que o ícone */
+        width: 40px;
+        height: 40px;
+
+        /* Se a centralização for necessária: */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 60px;
+    }
+
+    .page-title-actions {
+        display: flex;
+        /* 1. Ativa o Flexbox para que os itens fiquem na mesma linha. */
+        justify-content: space-between;
+        /* 2. Empurra o primeiro item (título) para a esquerda e o último (botões) para a direita, maximizando o espaço entre eles. */
+        align-items: center;
+        /* Opcional: Centraliza verticalmente o título e os botões. */
+
+        /* Fundo escuro (Overlay) */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    pointer-events: none; 
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1000; /* Alto z-index para ficar na frente de outros elementos */
+}
+
+/* Modal: Posição inicial (Invisível) */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    z-index: 1010; /* Mais alto que o overlay */
+    opacity: 0;
+    pointer-events: none; 
+}
+
+/* Modal: Posição Ativa (Visível) */
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Overlay: Posição Ativa (Visível) */
+#overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Outros estilos do modal... (Opcionais para a funcionalidade, mas recomendados) */
+.modal-header, .modal-footer {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-footer {
+    border-top: 1px solid #eee;
+    border-bottom: none;
+    justify-content: flex-end; 
+}
+
+.modal-body {
+    padding: 20px;
+}
+.close-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    color: #aaa;
+}
+
+    }
+</style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="row p-0 m-0 proBanner" id="proBanner">
+            <div class="col-md-12 p-0 m-0">
+                <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+                    <div class="ps-lg-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="mb-0 font-weight-medium me-3 buy-now-text"></p>
+                            <a href="#" target="_blank" class="btn me-2 buy-now-btn border-0">Visite nosso site</a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="../../../sistema/index.html"><i class="mdi mdi-home me-3 text-white"></i></a>
+                        <button id="bannerClose" class="btn border-0 p-0">
+                            <i class="mdi mdi-close text-white mr-0"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+
+                <div class="logo">
+                    <img src="../../assets/images/logo/dente_logo.png">
+
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-stretch">
+                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+                <div class="search-field d-none d-md-block">
+                    <form class="d-flex align-items-center h-100" action="#">
+                        <div class="input-group">
+                            <div class="input-group-prepend bg-transparent">
+                                <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                            </div>
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Search ">
+                        </div>
+                    </form>
+                </div>
+                <ul class="navbar-nav navbar-nav-right">
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <div class="nav-profile-img">
+                                <img src="../../assets/images/logo/icons/dentista.png" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">Dentista</p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="../../../sistema/login.html">
+                                <i class="mdi mdi-cached me-2 text-success"></i> Switch Account </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../../../sistema/index.html">
+                                <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
+                        </div>
+                    </li>
+                    <li class="nav-item d-none d-lg-block full-screen-link">
+                        <a class="nav-link">
+                            <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="mdi mdi-email-outline"></i>
+                            <span class="count-symbol bg-warning"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
+                            aria-labelledby="messageDropdown">
+                            <h6 class="p-3 mb-0">Messages</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message
+                                    </h6>
+                                    <p class="text-gray mb-0"> 1 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face2.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a
+                                        message</h6>
+                                    <p class="text-gray mb-0"> 15 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <img src="assets/images/faces/face3.jpg" alt="image" class="profile-pic">
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated
+                                    </h6>
+                                    <p class="text-gray mb-0"> 18 Minutes ago </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="p-3 mb-0 text-center">4 new messages</h6>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                            data-bs-toggle="dropdown">
+                            <i class="mdi mdi-bell-outline"></i>
+                            <span class="count-symbol bg-danger"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list"
+                            aria-labelledby="notificationDropdown">
+                            <h6 class="p-3 mb-0">Notifications</h6>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-success">
+                                        <i class="mdi mdi-calendar"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
+                                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today
+                                    </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-warning">
+                                        <i class="mdi mdi-cog"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
+                                    <p class="text-gray ellipsis mb-0"> Update dashboard </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item preview-item">
+                                <div class="preview-thumbnail">
+                                    <div class="preview-icon bg-info">
+                                        <i class="mdi mdi-link-variant"></i>
+                                    </div>
+                                </div>
+                                <div
+                                    class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
+                                    <p class="text-gray ellipsis mb-0"> New admin wow! </p>
+                                </div>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-logout d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-power"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item nav-settings d-none d-lg-block">
+                        <a class="nav-link" href="#">
+                            <i class="mdi mdi-format-line-spacing"></i>
+                        </a>
+                    </li>
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
+                    <span class="mdi mdi-menu"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item nav-profile">
+                        <a href="#" class="nav-link">
+                            <div class="nav-profile-image">
+                                <img src="../../assets/images/logo/icons/dentista.png" alt="profile" />
+                                <span class="login-status online"></span>
+                                <!--change to offline or busy as needed-->
+                            </div>
+                            <div class="nav-profile-text d-flex flex-column">
+                                <span class="font-weight-bold mb-2">Area do</span>
+                                <span class="text-secondary text-small">Dentista</span>
+                            </div>
+                            <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../areadodentista.html">
+                            <span class="menu-title">Dashboard</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="agendamentos.html">
+                            <span class="menu-title">Agendamentos</span>
+                            <i class="mdi mdi-home menu-icon"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-title">Profile</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi mdi-account-circle menu-icon"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="profile.html">Meu perfil</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                            aria-controls="ui-basic">
+                            <span class="menu-title">Ficha clinica</span>
+                            <i class="menu-arrow"></i>
+                            <i class="mdi-file-document-edit"></i>
+                        </a>
+                        <div class="collapse" id="ui-basic">
+                            <ul class="nav flex-column sub-menu">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="fichaclinica.html">Prontuario</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="fichaclinica.html">Tratamentos</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="fichaclinica.html">Documentos/Exames</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                            <span class="page-title-icon bg-gradient-danger text-white me-2">
+                                <i class="mdi mdi-folder-lock-open"></i>
+
+                            </span> Ficha Clínica e Prontuário - Paciente: Ana Carolina P.
+                        </h3>
+                        </h3>
+                        <div class="page-title-actions">
+                            <button class="btn btn-gradient-warning btn-icon-text me-2">
+                                <i class="mdi mdi-share me-1"></i> Compartilhar Prontuário (PDF)
+                            </button>
+                            <button class="btn btn-outline-danger btn-icon-text">
+                                <i class="mdi mdi-file-document-edit me-1"></i> Nova Anotação
+                            </button>
+                            
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-ficha-clinica-tab" role="tablist">
+                                            <button class="nav-link active" id="nav-dados-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-dados" type="button" role="tab"
+                                                aria-controls="nav-dados" aria-selected="true"><i
+                                                    class="mdi mdi-account-details me-1"></i> Anamnese & Dados</button>
+                                            <button class="nav-link" id="nav-odontograma-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-odontograma" type="button" role="tab"
+                                                aria-controls="nav-odontograma" aria-selected="false"><i
+                                                    class="mdi mdi-tooth-outline me-1"></i> Odontograma</button>
+                                            <button class="nav-link" id="nav-diagnostico-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-diagnostico" type="button" role="tab"
+                                                aria-controls="nav-diagnostico" aria-selected="false"><i
+                                                    class="mdi mdi-clipboard-text-outline me-1"></i> Plano de
+                                                Tratamento</button>
+                                            <button class="nav-link" id="nav-evolucao-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-evolucao" type="button" role="tab"
+                                                aria-controls="nav-evolucao" aria-selected="false"><i
+                                                    class="mdi mdi-history me-1"></i> Evolução Clínica</button>
+                                            <button class="nav-link" id="nav-documentos-tab" data-bs-toggle="tab"
+                                                data-bs-target="#nav-documentos" type="button" role="tab"
+                                                aria-controls="nav-documentos" aria-selected="false"><i
+                                                    class="mdi mdi-folder-multiple-image me-1"></i> Exames &
+                                                Docs</button>
+                                        </div>
+                                    </nav>
+
+                                    <div class="tab-content pt-3" id="nav-tabContent-ficha">
+
+
+                                        <div class="tab-pane fade show active" id="nav-dados" role="tabpanel"
+                                            aria-labelledby="nav-dados-tab">
+                                            <h5 class="mb-4">Anamnese e Condições de Saúde</h5>
+
+                                            <div class="row">
+
+                                                <div class="col-md-6 mb-4">
+                                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                                        <h6>Histórico Médico (Condições)</h6>
+                                                        <button type="button" class="btn btn-sm btn-outline-info"
+                                                            id="btnEditarCondicoes">
+                                                            <i class="mdi mdi-pencil me-1"></i> Editar Condições
+                                                        </button>
+                                                    </div>
+
+                                                    <table class="table table-sm table-bordered small"
+                                                        id="tabelaCondicoes">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Condição</th>
+                                                                <th>Observação</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="corpoTabelaCondicoes">
+                                                            <tr data-id="1">
+                                                                <td class="condicao-nome">Hipertensão</td>
+                                                                <td class="condicao-obs">Controlada com Losartana.</td>
+                                                            </tr>
+                                                            <tr data-id="2">
+                                                                <td class="condicao-nome">Alergia</td>
+                                                                <td class="condicao-obs">Nenhuma alergia conhecida.</td>
+                                                            </tr>
+                                                            <tr data-id="3">
+                                                                <td class="condicao-nome">Fumante</td>
+                                                                <td class="condicao-obs">Não</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <button type="button" class="btn btn-sm btn-success mt-2 d-none"
+                                                        id="btnSalvarCondicoes">
+                                                        <i class="mdi mdi-content-save me-1"></i> Salvar Condições
+                                                    </button>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <form id="formProntuarioBase">
+                                                        <h6>Registro e Consulta de Prontuários (Formulário)</h6>
+                                                        <div class="mb-3">
+                                                            <label for="motivoQueixa" class="form-label">Motivo
+                                                                Principal da Queixa</label>
+                                                            <textarea class="form-control" id="motivoQueixa" rows="2"
+                                                                disabled>Dor na mastigação no dente 16.</textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="historicoDoenca" class="form-label">Histórico da
+                                                                Doença Atual</label>
+                                                            <textarea class="form-control" id="historicoDoenca" rows="2"
+                                                                disabled>Início da dor há 3 dias, intermitente, piora com alimentos frios/doces.</textarea>
+                                                        </div>
+                                                        <button type="button" class="btn btn-gradient-info"
+                                                            id="btnEditarProntuarioBase">
+                                                            <i class="mdi mdi-pencil me-1"></i> Editar Prontuário Base
+                                                        </button>
+                                                        <button type="submit" class="btn btn-success d-none"
+                                                            id="btnSalvarProntuarioBase">
+                                                            <i class="mdi mdi-content-save me-1"></i> Salvar Prontuário
+                                                            Base
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-odontograma" role="tabpanel"
+                                            aria-labelledby="nav-odontograma-tab">
+                                            <h5 class="mb-4">Odontograma Interativo</h5>
+
+                                            <div class="alert alert-warning">
+
+                                                <p class="mb-0 small">Esta área seria o **Odontograma Interativo**, onde
+                                                    o dentista clica nos dentes para marcar cáries, restaurações, perdas
+                                                    dentárias e anotações.</p>
+                                            </div>
+
+                                            <h6 class="mt-4">Resumo das Ocorrências</h6>
+                                            <p><strong>Cáries Ativas:</strong> Dente 16 (Oclusal), Dente 27 (Distal)</p>
+                                            <p><strong>Resturações Existentes:</strong> Dentes 14, 25, 36</p>
+                                            <button class="btn btn-gradient-primary btn-sm"><i class="mdi mdi-plus"></i>
+                                                Iniciar Mapeamento</button>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-diagnostico" role="tabpanel"
+                                            aria-labelledby="nav-diagnostico-tab">
+                                            <h5 class="mb-4">Plano de Tratamento e Orçamento</h5>
+
+                                            <div class="table-responsive">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Procedimento</th>
+                                                            <th>Dente</th>
+                                                            <th>Status</th>
+                                                            <th>Convênio/Valor</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>1</td>
+                                                            <td>Restauração Simples</td>
+                                                            <td>16</td>
+                                                            <td><label class="badge badge-danger">A Fazer</label></td>
+                                                            <td>R$ 150,00 (Particular)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>2</td>
+                                                            <td>Extração de Siso</td>
+                                                            <td>38</td>
+                                                            <td><label class="badge badge-warning">Ag.
+                                                                    Autorização</label></td>
+                                                            <td>Convênio (Amil)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>3</td>
+                                                            <td>Limpeza (Profilaxia)</td>
+                                                            <td>Todos</td>
+                                                            <td><label class="badge badge-success">Concluído
+                                                                    (10/25)</label></td>
+                                                            <td>R$ 0,00 (Convênio)</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <button class="btn btn-gradient-success mt-3"><i
+                                                    class="mdi mdi-cart-plus"></i> Gerar Novo Orçamento</button>
+                                        </div>
+
+
+                                        <div class="tab-pane fade" id="nav-evolucao" role="tabpanel"
+                                            aria-labelledby="nav-evolucao-tab">
+                                            <h5 class="mb-4">Registro de Evolução Clínica e Diagnósticos</h5>
+
+                                            <form id="formNovaEvolucao" class="mb-5 p-3 border rounded bg-light">
+                                                <h6 class="text-primary"><i
+                                                        class="mdi mdi-plus-circle-outline me-1"></i> Adicionar Nova
+                                                    Anotação</h6>
+                                                <p class="small text-muted">A data e o nome do profissional serão
+                                                    registrados automaticamente.</p>
+
+                                                <div class="mb-3">
+                                                    <label for="tituloEvolucao" class="form-label">Título da Sessão (Ex:
+                                                        Restauração, Revisão, Diagnóstico)</label>
+                                                    <input type="text" class="form-control" id="tituloEvolucao"
+                                                        required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="novaEvolucao" class="form-label">Conteúdo da Evolução (O
+                                                        que foi feito, diagnóstico final, próximos passos)</label>
+                                                    <textarea class="form-control" id="novaEvolucao" rows="5" required
+                                                        placeholder="Ex: Sessão realizada em [Data]. Concluída a restauração do dente 16 (O). Paciente sem queixas, agendar próxima sessão para extração do 38. Diagnóstico: Cárie..."></textarea>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-gradient-danger"><i
+                                                        class="mdi mdi-content-save-all me-1"></i> Registrar
+                                                    Evolução</button>
+                                            </form>
+
+                                            <hr>
+
+                                            <h6>Histórico de Evolução (Timeline)</h6>
+                                            <div class="timeline" id="timelineEvolucao">
+                                                <div class="timeline-item existing-item" data-date="2025-11-05">
+                                                    <div class="timeline-point bg-primary"></div>
+                                                    <div class="timeline-content">
+                                                        <h6 class="timeline-title">05/Nov/2025 - Avaliação Inicial</h6>
+                                                        <p class="small text-muted mb-1 timeline-prof">Dr. David G.</p>
+                                                        <p class="timeline-content-text">Realizada avaliação completa.
+                                                            Principal diagnóstico é cárie no dente 16 e necessidade de
+                                                            extração do siso 38 (impactado). Apresentação do plano de
+                                                            tratamento e orçamento.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="timeline-item existing-item" data-date="2025-10-15">
+                                                <div class="timeline-point bg-success"></div>
+                                                <div class="timeline-content">
+                                                    <h6>15/Out/2025 - Profilaxia</h6>
+                                                    <p class="small text-muted mb-1">Dra. Maria S.</p>
+                                                    <p>Limpeza completa e polimento. Orientação de higiene
+                                                        reforçada.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="nav-documentos" role="tabpanel"
+                                        aria-labelledby="nav-documentos-tab">
+                                        <h5 class="mb-4">Imagens, Laudos e Termos Assinados</h5>
+
+                                        <div class="alert alert-info d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <strong>RX Panorâmico - 10/2025</strong>
+                                                <p class="mb-0 small">Visualizar imagens de referência para o plano
+                                                    de tratamento.</p>
+                                            </div>
+                                            <button class="btn btn-sm btn-info">Ver no Visualizador</button>
+                                        </div>
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item">Laudo de Biópsia (Jun/2025)</li>
+                                            <li class="list-group-item">Termo de Consentimento - Extração Siso
+                                                (Assinado)</li>
+                                        </ul>
+                                        <a href="#" class="btn btn-sm btn-outline-secondary mt-3">Gerenciar Todos os
+                                            Documentos</a>
+                                    </div>
+
+
+                                    <div class="modal" id="modalNovaAnotacao">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Nova Anotação de Prontuário</h5>
+                                                <button class="close-button" data-close-button>&times;</button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="tipoAnotacao">Tipo de Anotação:</label>
+                                                        <select id="tipoAnotacao" class="form-control">
+                                                            <option value="evolucao">Evolução Clínica</option>
+                                                            <option value="intercorrencia">Intercorrência</option>
+                                                            <option value="orientacao">Orientação ao Paciente</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="dataAnotacao">Data/Hora:</label>
+                                                        <input type="datetime-local" id="dataAnotacao"
+                                                            class="form-control" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="conteudoAnotacao">Conteúdo da Anotação:</label>
+                                                        <textarea id="conteudoAnotacao" class="form-control" rows="6"
+                                                            placeholder="Descreva aqui o procedimento, observação, ou intercorrência..."></textarea>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-outline-secondary"
+                                                    data-close-button>Cancelar</button>
+                                                <button class="btn btn-primary" id="btnSalvarAnotacao">Salvar
+                                                    Anotação</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="overlay"></div>
+
+
+
+
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- main-panel ends -->
+    </div>
+
+
+    <!-- page-body-wrapper ends -->
+    </div>
+    <!--edicao do prontuiario-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- Lógica para o Formulário de Queixas (Bloco 2) ---
+            const formQueixas = document.getElementById('formProntuarioBase');
+            const btnEditarBase = document.getElementById('btnEditarProntuarioBase');
+            const btnSalvarBase = document.getElementById('btnSalvarProntuarioBase');
+            const queixaTextareas = formQueixas.querySelectorAll('textarea');
+
+            btnEditarBase.addEventListener('click', function () {
+                queixaTextareas.forEach(textarea => {
+                    textarea.disabled = false; // Habilita os campos
+                });
+                btnEditarBase.classList.add('d-none');
+                btnSalvarBase.classList.remove('d-none');
+                queixaTextareas[0].focus(); // Foca no primeiro campo
+            });
+
+            formQueixas.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Simulação de Salvamento AJAX
+                alert('Dados da queixa salvos com sucesso!');
+
+                // Desabilita e reverte os botões
+                queixaTextareas.forEach(textarea => {
+                    textarea.disabled = true;
+                });
+                btnSalvarBase.classList.add('d-none');
+                btnEditarBase.classList.remove('d-none');
+
+                // **AQUI você enviaria os dados (MotivoQueixa e HistoricoDoenca) para o Backend.**
+            });
+
+
+            // --- Lógica para a Tabela de Condições (Bloco 1) ---
+            const tabelaCondicoes = document.getElementById('tabelaCondicoes');
+            const corpoTabelaCondicoes = document.getElementById('corpoTabelaCondicoes');
+            const btnEditarCondicoes = document.getElementById('btnEditarCondicoes');
+            const btnSalvarCondicoes = document.getElementById('btnSalvarCondicoes');
+
+            btnEditarCondicoes.addEventListener('click', function () {
+                // Altera a função da tabela para modo edição
+                corpoTabelaCondicoes.querySelectorAll('tr').forEach(row => {
+                    const nomeCell = row.querySelector('.condicao-nome');
+                    const obsCell = row.querySelector('.condicao-obs');
+
+                    // Transforma o texto em INPUTs
+                    nomeCell.innerHTML = `<input type="text" class="form-control form-control-sm" value="${nomeCell.textContent.trim()}">`;
+                    obsCell.innerHTML = `<input type="text" class="form-control form-control-sm" value="${obsCell.textContent.trim()}">`;
+                });
+
+                btnEditarCondicoes.classList.add('d-none');
+                btnSalvarCondicoes.classList.remove('d-none');
+            });
+
+            btnSalvarCondicoes.addEventListener('click', function () {
+                let dadosAtualizados = [];
+
+                corpoTabelaCondicoes.querySelectorAll('tr').forEach(row => {
+                    const id = row.getAttribute('data-id');
+                    const nomeInput = row.querySelector('.condicao-nome input');
+                    const obsInput = row.querySelector('.condicao-obs input');
+
+                    if (nomeInput && obsInput) {
+                        // Reverte os inputs para texto (modo visualização)
+                        row.querySelector('.condicao-nome').innerHTML = nomeInput.value;
+                        row.querySelector('.condicao-obs').innerHTML = obsInput.value;
+
+                        dadosAtualizados.push({
+                            id: id,
+                            condicao: nomeInput.value,
+                            observacao: obsInput.value
+                        });
+                    }
+                });
+
+                // Simulação de Salvamento AJAX
+                console.log("Condições salvas:", dadosAtualizados);
+                alert('Condições médicas atualizadas com sucesso!');
+
+                btnSalvarCondicoes.classList.add('d-none');
+                btnEditarCondicoes.classList.remove('d-none');
+
+                // **AQUI você enviaria o array 'dadosAtualizados' para o Backend.**
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formEvolucao = document.getElementById('formNovaEvolucao');
+            const timelineContainer = document.getElementById('timelineEvolucao');
+
+            formEvolucao.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // 1. Capturar Dados
+                const titulo = document.getElementById('tituloEvolucao').value;
+                const conteudo = document.getElementById('novaEvolucao').value;
+
+                // Dados automáticos do sistema
+                const hoje = new Date().toLocaleDateString('pt-BR');
+                const profissional = "Dr. David Greymaax"; // Viria da sessão do usuário logado
+
+                // Simulação de Salvamento no Backend (onde o registro permanente ocorreria)
+                console.log("Enviando nova evolução para o paciente...");
+
+                // 2. Criar a Nova Anotação HTML (Timeline Item)
+                const novoItem = document.createElement('div');
+                novoItem.classList.add('timeline-item', 'new-item'); // 'new-item' para destacar
+                novoItem.setAttribute('data-date', new Date().toISOString().slice(0, 10)); // Data de hoje
+
+                // Conteúdo do item
+                novoItem.innerHTML = `
+            <div class="timeline-point bg-danger"></div> <div class="timeline-content">
+                <h6 class="text-danger">${hoje} - ${titulo} (Novo)</h6>
+                <p class="small text-muted mb-1">${profissional}</p>
+                <p>${conteudo.replace(/\n/g, '<br>')}</p>
+                <button class="btn btn-xs btn-outline-secondary mt-2">Visualizar Detalhes</button>
+            </div>
+        `;
+
+                // 3. Inserir no Topo da Timeline (Cronologia Inversa)
+                // O método 'prepend' insere o novo item como o primeiro filho.
+                timelineContainer.prepend(novoItem);
+
+                // 4. Limpar o Formulário
+                formEvolucao.reset();
+                alert('Anotação clínica registrada com sucesso e adicionada ao histórico.');
+
+                // Fim da simulação. O Backend faria o salvamento no banco de dados.
+            });
+        });
+    </script>
+    <!--para editar historico anotacoes existentes-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formEvolucao = document.getElementById('formNovaEvolucao');
+            const timelineContainer = document.getElementById('timelineEvolucao');
+
+            // --- FUNÇÃO AUXILIAR PARA CRIAR O ITEM DA TIMELINE ---
+            function createTimelineItem(titulo, conteudo, profissional, data, isNew = false) {
+                const novoItem = document.createElement('div');
+                novoItem.classList.add('timeline-item', isNew ? 'new-item' : 'existing-item');
+                novoItem.setAttribute('data-date', data);
+
+                const statusColor = isNew ? 'bg-danger' : 'bg-primary'; // Cor para novo ou existente
+                const dataFormatada = new Date(data).toLocaleDateString('pt-BR');
+
+                novoItem.innerHTML = `
+            <div class="timeline-point ${statusColor}"></div> 
+            <div class="timeline-content">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <h6 class="timeline-title">${dataFormatada} - ${titulo}</h6>
+                    <button type="button" class="btn btn-xs btn-outline-secondary btn-edit-evolucao">
+                        <i class="mdi mdi-pencil me-1"></i> Editar
+                    </button>
+                </div>
+                <p class="small text-muted mb-1 timeline-prof">${profissional}</p>
+                <p class="timeline-content-text">${conteudo.replace(/\n/g, '<br>')}</p>
+            </div>
+        `;
+
+                // Adiciona o Event Listener para o botão "Editar"
+                novoItem.querySelector('.btn-edit-evolucao').addEventListener('click', function () {
+                    enableEvolutionEdit(novoItem);
+                });
+
+                return novoItem;
+            }
+
+            // --- FUNÇÃO PARA HABILITAR A EDIÇÃO INLINE ---
+            function enableEvolutionEdit(timelineItem) {
+                const titleElement = timelineItem.querySelector('.timeline-title');
+                const contentElement = timelineItem.querySelector('.timeline-content-text');
+                const editButton = timelineItem.querySelector('.btn-edit-evolucao');
+
+                // Se já estiver em modo edição, ignora
+                if (timelineItem.classList.contains('editing')) return;
+
+                timelineItem.classList.add('editing');
+
+                // 1. Captura o texto atual
+                const currentTitle = titleElement.textContent.split(' - ')[1] || titleElement.textContent;
+                const currentContent = contentElement.textContent.trim();
+
+                // 2. Transforma título e conteúdo em inputs/textareas
+                titleElement.innerHTML = `<input type="text" class="form-control form-control-sm" value="${currentTitle}">`;
+                contentElement.innerHTML = `<textarea class="form-control" rows="4">${currentContent}</textarea>`;
+
+                // 3. Altera o botão de "Editar" para "Salvar" e adiciona "Cancelar"
+                editButton.innerHTML = '<i class="mdi mdi-content-save-all me-1"></i> Salvar';
+                editButton.classList.remove('btn-outline-secondary');
+                editButton.classList.add('btn-success');
+
+                const cancelButton = document.createElement('button');
+                cancelButton.type = 'button';
+                cancelButton.classList.add('btn', 'btn-xs', 'btn-outline-secondary', 'ms-2', 'btn-cancel-edit');
+                cancelButton.innerHTML = '<i class="mdi mdi-close"></i> Cancelar';
+
+                const controlsDiv = editButton.parentNode;
+                controlsDiv.appendChild(cancelButton);
+
+                // 4. Lógica de Salvamento e Cancelamento
+                editButton.removeEventListener('click', arguments.callee); // Remove listener antigo
+                editButton.addEventListener('click', function () {
+                    saveEvolutionEdit(timelineItem);
+                });
+
+                cancelButton.addEventListener('click', function () {
+                    // Recarrega o item original (Em um sistema real, você buscaria os dados originais do Backend)
+                    alert('Edição cancelada. Recarregando dados originais...');
+                    // Simplesmente recriamos o item para simular o reset
+                    const originalData = {
+                        titulo: 'Avaliação Inicial',
+                        conteudo: 'Realizada avaliação completa...',
+                        profissional: 'Dr. David G.',
+                        data: '2025-11-05'
+                    };
+                    const tempParent = timelineItem.parentNode;
+                    const tempNext = timelineItem.nextSibling;
+                    tempParent.removeChild(timelineItem);
+                    tempParent.insertBefore(createTimelineItem(originalData.titulo, originalData.conteudo, originalData.profissional, originalData.data), tempNext);
+                });
+            }
+
+            // --- FUNÇÃO PARA SALVAR A EDIÇÃO ---
+            function saveEvolutionEdit(timelineItem) {
+                const newTitleInput = timelineItem.querySelector('.timeline-title input');
+                const newContentTextarea = timelineItem.querySelector('.timeline-content-text textarea');
+                const titleElement = timelineItem.querySelector('.timeline-title');
+                const contentElement = timelineItem.querySelector('.timeline-content-text');
+
+                const newTitle = newTitleInput.value;
+                const newContent = newContentTextarea.value;
+                const data = new Date(timelineItem.getAttribute('data-date')).toLocaleDateString('pt-BR');
+
+                // ** AQUI VOCÊ ENVIARIA OS DADOS PARA O BACKEND VIA AJAX/FETCH **
+                alert('Evolução salva: ' + newTitle);
+                // ID do registro: O backend precisa do ID do registro salvo para atualizar
+
+                // 1. Reverter para o modo visualização
+                titleElement.innerHTML = `${data} - ${newTitle}`;
+                contentElement.innerHTML = newContent.replace(/\n/g, '<br>');
+
+                // 2. Reverter os botões
+                const editButton = timelineItem.querySelector('.btn-success');
+                const cancelButton = timelineItem.querySelector('.btn-cancel-edit');
+
+                editButton.innerHTML = '<i class="mdi mdi-pencil me-1"></i> Editar';
+                editButton.classList.remove('btn-success');
+                editButton.classList.add('btn-outline-secondary');
+
+                cancelButton.remove();
+
+                timelineItem.classList.remove('editing');
+
+                // Reinstalar o listener de edição para o novo botão
+                editButton.addEventListener('click', function () {
+                    enableEvolutionEdit(timelineItem);
+                });
+            }
+
+            // --- LÓGICA DE REGISTRO DE NOVA EVOLUÇÃO (DO BLOCO ANTERIOR) ---
+            formEvolucao.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const titulo = document.getElementById('tituloEvolucao').value;
+                const conteudo = document.getElementById('novaEvolucao').value;
+                const profissional = "Dr. David Greymaax";
+                const data = new Date().toISOString().slice(0, 10);
+
+                // Simulação: A nova anotação é criada e inserida no topo
+                const novoItem = createTimelineItem(titulo, conteudo, profissional, data, true);
+                timelineContainer.prepend(novoItem);
+
+                formEvolucao.reset();
+                alert('Anotação clínica registrada com sucesso!');
+                // O Backend faria o salvamento e retornaria o ID do novo registro.
+            });
+
+            // Inicializar os itens existentes com o botão de edição
+            timelineContainer.querySelectorAll('.timeline-item').forEach(item => {
+                const titulo = item.querySelector('h6').textContent.split(' - ')[1];
+                const conteudo = item.querySelector('p:not(.small)').textContent;
+                const profissional = item.querySelector('.timeline-prof').textContent;
+                const data = item.getAttribute('data-date');
+
+                // Criar item novamente para garantir que tenha o Event Listener de edição
+                const tempParent = item.parentNode;
+                const tempNext = item.nextSibling;
+                tempParent.removeChild(item);
+                tempParent.insertBefore(createTimelineItem(titulo, conteudo, profissional, data), tempNext);
+            });
+        });
+    </script>
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="../../assets/vendors/chart.js/chart.umd.js"></script>
+    <script src="../../assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="../../assets/js/off-canvas.js"></script>
+    <script src="../../assets/js/misc.js"></script>
+    <script src="../../assets/js/settings.js"></script>
+    <script src="../../assets/js/todolist.js"></script>
+    <script src="../../assets/js/jquery.cookie.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="../../assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+</body>
+
+</html>

@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login </title>
+    <meta name="description"
+        content="Hutche Furniture eCommerce Template is a wonderful and elegant-looking website template that is the best choice for any type of online furniture store." />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <link rel="canonical" href="Replace_with_your_PAGE_URL" />
+
+
+    <!-- Add site Favicon -->
+    <link rel="icon" href="siteodontologico/assets/imagens/logo/logoodonto-nobackground.png" sizes="32x32" />
+
+    <link rel="icon" href="siteodontologico/assets/images/logo/logoodonto-nobackground.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://hasthemes.com/wp-content/uploads/2019/04/cropped-favicon-180x180.png" />
+    <meta name="msapplication-TileImage"
+        content="https://hasthemes.com/wp-content/uploads/2019/04/cropped-favicon-270x270.png" />
+
+
+    <!-- CSS 
+    ========================= -->
+    <link rel="stylesheet" href="siteodontologico/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/slick.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/font.awesome.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/icofont.min.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/elegant-icons.min.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/animate.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/nice-select.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="siteodontologico/assets/css/jquery-ui.min.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="siteodontologico/assets/css/style.css">
+
+    <!--modernizr min js here-->
+    <script src="siteodontologico/assets/js/vendor/modernizr-3.7.1.min.js"></script>
+    <!--services-->
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!--home-->
+
+    <link rel="stylesheet" href="siteodontologico/assets/bannerhome/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="siteodontologicoassets/bannerhome/css/animate.css">
+    <link rel="stylesheet" href="siteodontologicoassets/bannerhome/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="siteodontologicoassets/bannerhome/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="siteodontologicoassets/bannerhome/css/magnific-popup.css">
+    <link rel="stylesheet" href="siteodontologicoassets/bannerhome/css/aos.css">
+    <link rel="stylesheet" href="siteodontologicoassets/bannerhome/css/ionicons.min.css">
+    <link rel="stylesheet" href="siteodontologicoassets/bannerhome/css/icomoon.css">
+
+
+
+    <style>
+        /* Container principal do dropdown */
+
+
+        /* Oculta o submenu */
+        .dropdown {
+            /* Permite que o submenu (position: absolute) se posicione corretamente */
+            position: relative;
+            /* Garante que o item ocupe um espaço no menu principal, se necessário */
+            display: block;
+        }
+
+        /* Para o seu UL do submenu (na linha 171) */
+        .dropdown_menu {
+            display: none;
+            /* Oculta por padrão */
+            position: absolute;
+            /* Permite flutuar */
+
+            /* === O SEGREDO PARA ALINHAR À DIREITA === */
+            top: 100%;
+            /* Coloca o menu logo abaixo do item "Entrar" */
+            right: 0;
+            /* Alinha o lado direito do submenu com o lado direito do item "Entrar" */
+            left: auto;
+            /* (Opcional) Garante que o alinhamento esquerdo seja ignorado */
+
+            /* Estilos Visuais Adicionais */
+            background-color: #fff;
+            /* Cor de fundo (ajuste conforme seu tema) */
+            list-style: none;
+            padding: 10px 0;
+            min-width: 150px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estiliza os itens de link dentro do submenu (Opcional, mas recomendado) */
+        .dropdown_menu li a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            /* Cor do texto */
+        }
+
+        .dropdown_menu li a:hover {
+            background-color: #f1f1f1;
+            /* Cor de fundo ao passar o mouse */
+        }
+
+        /* Quando o mouse passar sobre o item principal, exibe o submenu */
+        .dropdown:hover .dropdown_menu {
+            display: block;
+        }
+
+
+        /* 1. Estilo do Contêiner Flutuante */
+        .whatsapp-float {
+            /* POSICIONAMENTO: Faz o ícone flutuar sobre a página */
+            position: fixed;
+            /* LOCALIZAÇÃO: Posiciona no canto inferior direito */
+            bottom: 40px;
+            right: 40px;
+
+            /* ESTILIZAÇÃO */
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            /* Cor oficial do WhatsApp */
+            color: #FFF;
+            border-radius: 50%;
+            /* Faz o ícone ser um círculo */
+            text-align: center;
+            box-shadow: 2px 2px 3px #999;
+            /* Adiciona uma sombra para destaque */
+            z-index: 1000;
+            /* Garante que fique acima de outros elementos */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            /* Remove sublinhado do link */
+        }
+
+        /* 2. Estilo do Ícone */
+        .whatsapp-icon {
+            font-size: 40px;
+        }
+
+
+        .hero-wrap {
+            background-size: cover !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+        }
+
+
+        body {
+            margin-top: 20px;
+        }
+
+        /* Feature Box
+---------------------*/
+        .feature-box-1 {
+            padding: 32px;
+            box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+            margin: 15px 0;
+            position: relative;
+            z-index: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            -moz-transition: ease all 0.35s;
+            -o-transition: ease all 0.35s;
+            -webkit-transition: ease all 0.35s;
+            transition: ease all 0.35s;
+            top: 0;
+        }
+
+        .feature-box-1 * {
+            -moz-transition: ease all 0.35s;
+            -o-transition: ease all 0.35s;
+            -webkit-transition: ease all 0.35s;
+            transition: ease all 0.35s;
+        }
+
+        .feature-box-1 .icon {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            background: #ffffff;
+            color: #2B9ADA;
+            text-align: center;
+            border-radius: 50%;
+            margin-bottom: 22px;
+            font-size: 27px;
+        }
+
+        .feature-box-1 .icon i {
+            line-height: 70px;
+        }
+
+        .feature-box-1 h5 {
+            color: #20247b;
+            font-weight: 600;
+        }
+
+        .feature-box-1 p {
+            margin: 0;
+        }
+
+        .feature-box-1:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: auto;
+            right: 0;
+            border-radius: 10px;
+            width: 0;
+            background: #2B9ADA;
+            z-index: -1;
+            -moz-transition: ease all 0.35s;
+            -o-transition: ease all 0.35s;
+            -webkit-transition: ease all 0.35s;
+            transition: ease all 0.35s;
+        }
+
+        .feature-box-1:hover {
+            top: -5px;
+        }
+
+        .feature-box-1:hover h5 {
+            color: #ffffff;
+        }
+
+        .feature-box-1:hover p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .feature-box-1:hover:after {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            left: 0;
+            right: auto;
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            padding-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-weight: 700;
+            color: #2B9ADA;
+            font-size: 45px;
+            margin: 0 0 15px;
+            border-left: 5px solid #2B9ADA;
+            padding-left: 15px;
+        }
+
+
+
+        /* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
+        @import url('https://fonts.googleapis.com/css?family=Abel|Abril+Fatface|Alegreya|Arima+Madurai|Dancing+Script|Dosis|Merriweather|Oleo+Script|Overlock|PT+Serif|Pacifico|Playball|Playfair+Display|Share|Unica+One|Vibur');
+
+        /* End Fonts */
+        /* Start Global rules */
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* End Global rules */
+
+        /* Start body rules */
+        #container-form2 {
+            background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
+            background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+
+            font-family: 'Vibur', cursive;
+            /*   the main font */
+            font-family: 'Abel', sans-serif;
+            opacity: .95;
+            /* background-image: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%); */
+        }
+
+
+
+        /* |||||||||||||||||||||||||||||||||||||||||||||*/
+        /* //////////////////////////////////////////// */
+
+
+
+
+        /* End body rules */
+
+        /* Start form  attributes */
+        form {
+            width: 450px;
+            min-height: 500px;
+            height: auto;
+            border-radius: 5px;
+            margin: 2% auto;
+            box-shadow: 0 9px 50px hsla(20, 67%, 75%, 0.31);
+            padding: 2%;
+            background-image: linear-gradient(-225deg, #E3FDF5 50%, #FFE6FA 50%);
+        }
+
+        /* form Container */
+        form .con {
+            display: -webkit-flex;
+            display: flex;
+
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+            margin: 0 auto;
+        }
+
+        /* the header form form */
+        header {
+            margin: 2% auto 10% auto;
+            text-align: center;
+        }
+
+        /* Login title form form */
+        header h2 {
+            font-size: 250%;
+            font-family: 'Playfair Display', serif;
+            color: #3e403f;
+        }
+
+        /*  A welcome message or an explanation of the login form */
+        header p {
+            letter-spacing: 0.05em;
+        }
+
+
+
+        /* //////////////////////////////////////////// */
+        /* //////////////////////////////////////////// */
+
+
+        .input-item {
+            background: #fff;
+            color: #333;
+            padding: 14.5px 0px 15px 9px;
+            border-radius: 5px 0px 0px 5px;
+        }
+
+
+
+        /* Show/hide password Font Icon */
+        #eye {
+            background: #fff;
+            color: #333;
+
+            margin: 5.9px 0 0 0;
+            margin-left: -20px;
+            padding: 15px 9px 19px 0px;
+            border-radius: 0px 5px 5px 0px;
+
+            float: right;
+            position: relative;
+            right: 1%;
+            top: -.2%;
+            z-index: 5;
+
+            cursor: pointer;
+        }
+
+        /* inputs form  */
+        input[class="form-input"] {
+            width: 240px;
+            height: 50px;
+
+            margin-top: 2%;
+            padding: 15px;
+
+            font-size: 16px;
+            font-family: 'Abel', sans-serif;
+            color: #5E6472;
+
+            outline: none;
+            border: none;
+
+            border-radius: 0px 5px 5px 0px;
+            transition: 0.2s linear;
+
+        }
+
+        input[id="txt-input"] {
+            width: 250px;
+        }
+
+        /* focus  */
+        input:focus {
+            transform: translateX(-2px);
+            border-radius: 5px;
+        }
+
+        /* //////////////////////////////////////////// */
+        /* //////////////////////////////////////////// */
+
+        /* input[type="text"] {min-width: 250px;} */
+        /* buttons  */
+        button {
+            display: inline-block;
+            color: #252537;
+
+            width: 280px;
+            height: 50px;
+
+            padding: 0 20px;
+            background: #fff;
+            border-radius: 5px;
+
+            outline: none;
+            border: none;
+
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s linear;
+
+            margin: 7% auto;
+            letter-spacing: 0.05em;
+        }
+
+        /* Submits */
+        .submits {
+            width: 48%;
+            display: inline-block;
+            float: left;
+            margin-left: 2%;
+        }
+
+        /*       Forgot Password button FAF3DD  */
+        .frgt-pass {
+            background: transparent;
+        }
+
+        /*     Sign Up button  */
+        .sign-up {
+            background: #B8F2E6;
+        }
+
+
+        /* buttons hover */
+        button:hover {
+            transform: translatey(3px);
+            box-shadow: none;
+        }
+
+        /* buttons hover Animation */
+        button:hover {
+            animation: ani9 0.4s ease-in-out infinite alternate;
+        }
+
+        @keyframes ani9 {
+            0% {
+                transform: translateY(3px);
+            }
+
+            100% {
+                transform: translateY(5px);
+            }
+        }
+    </style>
+
+
+
+
+
+</head>
+
+<body>
+    <!--offcanvas menu area start-->
+    <div class="body_overlay">
+
+    </div>
+    <div class="offcanvas_menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="offcanvas_menu_wrapper">
+                        <div class="canvas_close">
+                            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                        </div>
+                        <div id="menu" class="text-left ">
+                            <ul class="offcanvas_main_menu">
+                                <li class="menu-item-has-children"><a href="#">Inicio</a></li>
+
+                                <li class="menu-item-has-children"><a
+                                        href="siteodontologico/paginas/tratamentos.html">Tratamentos</a></li>
+
+
+                                <li class="menu-item-has-children"><a
+                                        href="siteodontologico/paginas/contact.html">Contato</a></li>
+
+
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--offcanvas menu area end-->
+    <!--header area start-->
+    <header class="header_section mb-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main_header d-flex justify-content-between align-items-center">
+                        <div class="header_logo">
+                            <a class="sticky_none" href="index.html"><img
+                                    src="siteodontologico/assets/imagens/logo/logoodonto-nobackground.png" width="290px"
+                                    height="150px" alt=""></a>
+                        </div>
+                        <!--main menu start-->
+                        <div class="main_menu d-none d-lg-block">
+                            <nav>
+
+
+                                <ul class="d-flex">
+                                    <li><a  href="#">Inicio</a></li>
+
+                                    <li><a href="siteodontologico/paginas/tratamentos.html">Tratamentos</a></li>
+
+                                    <li><a href="siteodontologico/paginas/contact.html">Contato</a></li>
+
+
+                                </ul>
+                            </nav>
+                        </div>
+                        <!--main menu end-->
+                        <div class="header__ridebar d-flex align-items-center">
+                            <div class="header_account">
+                                <ul class="d-flex">
+                                    <li class="header_search_btn"><a href="#"><img
+                                                src="siteodontologico/assets/imagens/icon/search.png" alt=""></a></li>
+
+                                    <li class="account_link_menu"><a href="#"><img
+                                                src="siteodontologico/assets/imagens/icon/person.png" alt=""></a>
+                                        <ul class="dropdown_account_link">
+
+                                            <li class="dropdown">
+                                                <a class="active" class="active" href="#">Entrar</a>
+                                                <ul class="dropdown_menu">
+                                                    <li><a href="#">Paciente</a></li>
+                                                    <li><a href="#">Dentista</a></li>
+                                                    <li><a href="#">Atendente</a></li>
+                                                </ul>
+                                            </li>
+
+                                    </li>
+                                    <li><a href="">criar conta</a></li>
+
+                                </ul>
+                                </li>
+                                </ul>
+                            </div>
+                            <div class="canvas_open">
+                                <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- page search box -->
+    <div class="page_search_box">
+        <div class="search_close">
+            <i class="ion-close-round"></i>
+        </div>
+        <form class="border-bottom" action="#">
+            <input class="border-0" placeholder="Search..." type="text">
+            <button type="submit"><i class="icofont-search"></i></button>
+        </form>
+    </div>
+
+
+    <div id="container-form2" class="overlay">
+        <!-- LOGN IN FORM by Omar Dsoky -->
+        <form id="login-form">
+            <!--   con = Container  for items in the form-->
+            <div class="con">
+                <!--     Start  header Content  -->
+                <header class="head-form">
+                    <h2>Log In</h2>
+                    <!--     A welcome message or an explanation of the login form -->
+                    <p>login here using your username and password</p>
+                </header>
+                <!--     End  header Content  -->
+                <br>
+                <div class="field-set">
+
+                    <!--   user name -->
+                    <span class="input-item">
+                        <i class="fa fa-user-circle"></i>
+                    </span>
+                    <!--   user name Input-->
+                    <input class="form-input" id="txt-input" type="text" placeholder="@UserName" required>
+
+                    <br>
+
+                    <!--   Password -->
+
+                    <span class="input-item">
+                        <i class="fa fa-key"></i>
+                    </span>
+                    <!--   Password Input-->
+                    <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
+
+                    <!--      Show/hide password  -->
+                    <span>
+                        <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
+                    </span>
+
+                    <div class="field-set">
+                        <span class="input-item">
+                            <i class="fa fa-users"></i>
+                        </span>
+                        <select class="form-input" id="user-type" required>
+                            <option value="" disabled selected>Selecione o Tipo de Usuário</option>
+                            <option value="paciente">Paciente</option>
+                            <option value="dentista">Dentista</option>
+                            <option value="atendente">Atendente</option>
+                        </select>
+                        <br>
+                    </div>
+
+
+                    <br>
+                    <!--        buttons -->
+                    <!--      button LogIn -->
+                    <button class="log-in"  type="submit"> Log In </button>
+                </div>
+
+                <!--   other buttons -->
+                <div class="other">
+                    <!--      Forgot Password button-->
+                    <button class="btn submits frgt-pass">Forgot Password</button>
+                    <!--     Sign Up button -->
+                    <button class="btn submits sign-up">Sign Up
+                        <!--         Sign Up font icon -->
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    </button>
+                    <!--      End Other the Division -->
+                </div>
+
+                <!--   End Conrainer  -->
+            </div>
+
+            <!-- End Form -->
+        </form>
+    </div>
+
+    <!-- footer section start -->
+    <footer class="footer_section footer_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="main_footer d-flex justify-content-between align-items-center">
+                        <div class="footer_left">
+                            <div class="footer_logo">
+                                <a href="index.html"><img
+                                        src="siteodontologico/assets/imagens/logo/logoodonto-nobackground.png"
+                                        width="290px" height="150px" alt=""></a>
+                            </div>
+
+                        </div>
+                        <div class="footer_sidebar d-flex">
+                            <div class="footer_widget_list">
+                                <div class="footer_widget_title">
+                                    <h3>Clinica Odonto-Reabilitação-Sorrisos</h3>
+                                </div>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">Inicio</a></li>
+
+                                        <li><a href="siteodontologico/paginas/tratamentos.html">Tratamentos</a></li>
+                                        <li><a href="siteodontologico/paginas/contact.html">Contato</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="footer_widget_list">
+                                <div class="footer_widget_title">
+                                    <h3>Acesso de conta Links</h3>
+                                </div>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">Paciente</a></li>
+                                        <li><a href="#">Dentista</a></li>
+                                        <li><a href="#">Atendente</a></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="footer_widget_list">
+                                <div class="footer_widget_title">
+                                    <h3>Informações Contato</h3>
+                                </div>
+                                <div class="footer_menu">
+                                    <ul class="menu-contato">
+                                        <li><a href="#"><i class="fa-solid fa-phone"></i>(11) 98253-5716</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-location-dot"></i>Rua Dr. Luís Aires, 1668
+                                                - Parque Artur Alvim, São Paulo</a></li>
+                                    </ul>
+
+                                </div>
+
+
+                            </div>
+
+                            <!-- ===== WHATSAPP FLOAT ===== -->
+                            <link rel="stylesheet"
+                                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+                            <a href="https://wa.me/5511982535716?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20a%20Clínica."
+                                class="whatsapp-float" target="_blank">
+                                <i class="fab fa-whatsapp whatsapp-icon"></i>
+                            </a>
+
+                            <!-- Mapa do Google Maps Incorporado -->
+                            <div class="mt-10">
+                                <h3 class="text-xl font-bold mb-4 text-center">Nossa Localização</h3>
+                                <div style="width:100%; max-width:100%; height:300px; overflow:hidden;">
+                                    <iframe title="Mapa da Clínica Odontológica" width="100%" height="300"
+                                        frameborder="0" style="border:0; border-radius:8px;"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.942767015481!2d-46.48816072553909!3d-23.53580526084627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce66a9d20c58e7%3A0xb35e3962d3a0429a!2sRua%20Dr.%20Lu%C3%ADs%20Aires%2C%201668%20-%20Parque%20Artur%20Alvim%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003568-010!5e0!3m2!1spt-BR!2sbr!4v1703649500000!5m2!1spt-BR!2sbr"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="footer_bottom">
+                    <div class="copyright_right text-center">
+                        <p>&copy; <span id="year"></span> All rights reserved Odonto-Reabilitações-Sorrisos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+
+    <!-- footer section end -->
+
+    <!-- footer section end -->
+    <!-- Js 
+        
+        ========================= -->
+    <!--script login-->
+   
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Dicionário de Usuários Válidos
+    const VALID_CREDENTIALS = {
+        "joao.silva": { password: "p123", type: "paciente", redirect: "dashboards/areadopaciente.html" },
+        "dra.ingrid": { password: "d456", type: "dentista", redirect: "dashboards/areadodentista.html" },
+        "bia.atend": { password: "a789", type: "atendente", redirect: "dashboards/areadoatendente.html" },
+    };
+
+    // 2. Seleciona o formulário
+    const loginForm = document.getElementById('login-form');
+
+    // 3. Listener de SUBMIT
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const usernameInput = document.getElementById('txt-input').value.trim();
+        const passwordInput = document.getElementById('pwd').value;
+        const userTypeInput = document.getElementById('user-type').value;
+
+        const user = VALID_CREDENTIALS[usernameInput];
+
+        if (user && user.password === passwordInput && user.type === userTypeInput) {
+            alert(`Login realizado com sucesso! Bem-vindo(a), ${usernameInput}.`);
+            window.location.href = user.redirect;
+        } else {
+            if (userTypeInput === "") {
+                alert('Selecione o Tipo de Usuário.');
+            } else {
+                alert('Usuário, senha ou tipo de usuário incorretos.');
+            }
+            document.getElementById('pwd').value = '';
+        }
+    });
+
+});
+</script>
+
+    <script>
+        const dropdown = document.querySelector('.dropdown');
+        const toggle = document.getElementById('dropdownToggle');
+
+        // Alterna o menu ao clicar
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    </script>
+    <script>
+        // Atualiza o ano automaticamente
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+
+
+
+
+
+
+    <script src="siteodontologico/assets/js/vendor/jquery-3.4.1.min.js"></script>
+    <script src="siteodontologico/assets/js/vendor/popper.js"></script>
+    <script src="siteodontologico/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="siteodontologico/assets/js/swiper-bundle.min.js"></script>
+    <script src="siteodontologico/assets/js/slick.min.js"></script>
+    <script src="siteodontologico/assets/js/wow.min.js"></script>
+    <script src="siteodontologico/assets/js/jquery.scrollup.min.js"></script>
+    <script src="siteodontologico/assets/js/images-loaded.min.js"></script>
+    <script src="siteodontologico/assets/js/jquery.nice-select.js"></script>
+    <script src="siteodontologico/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="siteodontologico/assets/js/mailchimp-ajax.js"></script>
+    <script src="siteodontologico/assets/js/jquery.counterup.min.js"></script>
+    <script src="siteodontologico/assets/js/jquery-waypoints.js"></script>
+    <script src="siteodontologico/assets/js/jquery-ui.min.js"></script>
+    <script src="siteodontologico/assets/js/ajax-mail.js"></script>
+
+    <!-- Main JS -->
+    <script src="siteodontologico/assets/js/main.js"></script>
+
+    <!--scripts home-->
+    <script src="siteodontologico/assets/bannerhome/js/jquery.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/popper.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/bootstrap.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/jquery.easing.1.3.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/jquery.waypoints.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/jquery.stellar.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/owl.carousel.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/jquery.magnific-popup.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/aos.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/scrollax.min.js"></script>
+    <script src="siteodontologico/assets/bannerhome/js/main.js"></script>
+
+
+</body>
+
+</html>
